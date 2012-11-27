@@ -73,15 +73,15 @@ def cosSim(a, b):
 
 @makeSymmetric
 def dotp(a, b):
-	global dotphit
-	global dotpmiss
-	cacheKey = (tuple(a), tuple(b))
-	if cacheKey in dotpCache:
-		dotphit += 1
-		return dotpCache[cacheKey]
-	dotpmiss += 1
+	#global dotphit
+	#global dotpmiss
+	#cacheKey = (tuple(a), tuple(b))
+	#if cacheKey in dotpCache:
+	#	dotphit += 1
+	#	return dotpCache[cacheKey]
+	#dotpmiss += 1
 	score = sum([a[key] * b[key] for key in set.intersection(set(a.keys()), set(b.keys()))])
-	dotpCache[cacheKey] = score
+	#dotpCache[cacheKey] = score
 	return score
 
 def mag(a):
@@ -157,12 +157,12 @@ def main(parsedData):
 			fout.write("%f\n" % prediction)
 			prevMovId = currMovId
 
-			dotpCache = {}
+			#dotpCache = {}
 
 			if count > 6:
 				break
 
-	print "dotp cache perf: %f, %f v %f" % (dotphit / (dotpmiss + dotphit), dotphit, dotpmiss)
+	#print "dotp cache perf: %f, %f v %f" % (dotphit / (dotpmiss + dotphit), dotphit, dotpmiss)
 
 
 

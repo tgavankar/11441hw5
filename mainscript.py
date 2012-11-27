@@ -71,7 +71,10 @@ def makeSymmetric(fn):
 def cosSim(a, b):
 	return dotp(a, b) / (mag(a) * mag(b))
 
-@makeSymmetric
+def getIntersection(a, b):
+	return set().union(a, b)
+	#return set.intersection(set(a.keys()), set(b.keys()))
+
 def dotp(a, b):
 	#global dotphit
 	#global dotpmiss
@@ -80,7 +83,7 @@ def dotp(a, b):
 	#	dotphit += 1
 	#	return dotpCache[cacheKey]
 	#dotpmiss += 1
-	score = sum([a[key] * b[key] for key in set.intersection(set(a.keys()), set(b.keys()))])
+	score = sum([a.get(key, 0) * b.get(key, 0) for key in getIntersection(a, b)])
 	#dotpCache[cacheKey] = score
 	return score
 
